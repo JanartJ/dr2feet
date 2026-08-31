@@ -1,0 +1,17 @@
+.not-found {
+  padding: 220px 0 160px;
+}
+
+.not-found__inner {
+  max-width: 480px;
+}
+
+.not-found h1 {
+  margin-top: 18px;
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+}
+
+.not-found p {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}

@@ -1,0 +1,31 @@
+.bio-graphic {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.bio-graphic svg {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.bio-graphic__pulse {
+  position: absolute;
+  top: 42%;
+  left: 58%;
+  width: 14px;
+  height: 14px;
+  background: var(--bio-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 24px 8px rgba(46, 155, 255, 0.55);
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 980px) {
+  .bio-graphic {
+    max-width: 340px;
+  }
+}
