@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import ScrollReveal from '../components/ScrollReveal';
 import './About.css';
 
 const CREDENTIALS = [
@@ -56,50 +57,54 @@ export default function About() {
         </div>
       </section>
 
-      <section className="philosophy">
-        <div className="shell philosophy__grid">
-          <blockquote>
-            &ldquo;Most foot pain isn't a mystery &mdash; it's a mechanical or
-            cellular problem that hasn't been treated as one. My job is to
-            find which, and fix it at that level.&rdquo;
-            <footer>Dr. Bilal Khan</footer>
-          </blockquote>
+      <ScrollReveal>
+        <section className="philosophy">
+          <div className="shell philosophy__grid">
+            <blockquote>
+              &ldquo;Most foot pain isn't a mystery &mdash; it's a mechanical or
+              cellular problem that hasn't been treated as one. My job is to
+              find which, and fix it at that level.&rdquo;
+              <footer>Dr. Bilal Khan</footer>
+            </blockquote>
 
-          <div className="philosophy__values">
-            {VALUES.map((v) => (
-              <div key={v.title} className="philosophy__value">
-                <h3>{v.title}</h3>
-                <p>{v.text}</p>
+            <div className="philosophy__values">
+              {VALUES.map((v) => (
+                <div key={v.title} className="philosophy__value">
+                  <h3>{v.title}</h3>
+                  <p>{v.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className="journey">
+          <div className="shell">
+            <h2>A path built around one specialty.</h2>
+
+            <div className="journey__track">
+              <div className="journey__item">
+                <span>Podiatric Medical School</span>
+                <p>Trained in surgical and biomechanical foundations of foot &amp; ankle care.</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="journey">
-        <div className="shell">
-          <h2>A path built around one specialty.</h2>
-
-          <div className="journey__track">
-            <div className="journey__item">
-              <span>Podiatric Medical School</span>
-              <p>Trained in surgical and biomechanical foundations of foot &amp; ankle care.</p>
-            </div>
-            <div className="journey__item">
-              <span>Surgical Residency</span>
-              <p>Focused on reconstructive and minimally invasive procedures.</p>
-            </div>
-            <div className="journey__item">
-              <span>Regenerative Fellowship</span>
-              <p>Specialized in PRP, cellular therapy, and sports medicine protocols.</p>
-            </div>
-            <div className="journey__item">
-              <span>Dr. 2 Feet, Founded</span>
-              <p>Built a practice around restoring tissue, not just managing symptoms.</p>
+              <div className="journey__item">
+                <span>Surgical Residency</span>
+                <p>Focused on reconstructive and minimally invasive procedures.</p>
+              </div>
+              <div className="journey__item">
+                <span>Regenerative Fellowship</span>
+                <p>Specialized in PRP, cellular therapy, and sports medicine protocols.</p>
+              </div>
+              <div className="journey__item">
+                <span>Dr. 2 Feet, Founded</span>
+                <p>Built a practice around restoring tissue, not just managing symptoms.</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </>
   );
 }

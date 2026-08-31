@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -12,11 +13,27 @@ import NotFound from './pages/NotFound';
 
 export default function App() {
   const location = useLocation();
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.body.classList.add('theme-dark');
+    } else {
+      document.body.classList.remove('theme-dark');
+    }
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <>
       <ScrollToTop />
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <main>
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>

@@ -59,7 +59,7 @@
   border-radius: 6px;
   overflow: hidden;
   aspect-ratio: 4 / 3;
-  filter: grayscale(0.4) invert(0.92) contrast(0.9);
+  filter: var(--map-filter);
 }
 
 .contact-map iframe {
@@ -99,15 +99,18 @@
 .contact-form-panel input,
 .contact-form-panel select,
 .contact-form-panel textarea {
-  background: rgba(9, 14, 24, 0.7);
+  background: var(--void);
   border: 1px solid var(--line-bright);
-  border-radius: 3px;
+  border-radius: 6px;
   padding: 13px 14px;
   color: var(--white);
   font-family: var(--font-body);
   font-size: 0.94rem;
-  resize: vertical;
   transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.contact-form-panel textarea {
+  resize: vertical;
 }
 
 .contact-form-panel input::placeholder,

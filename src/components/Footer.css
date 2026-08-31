@@ -20,9 +20,7 @@
 .footer__brand img {
   width: 46px;
   height: 46px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--line-bright);
+  object-fit: contain;
 }
 
 .footer__brand strong {

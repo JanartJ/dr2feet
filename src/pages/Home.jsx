@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import BioGraphic from '../components/BioGraphic';
 import TestimonialRotator from '../components/TestimonialRotator';
+import ScrollReveal from '../components/ScrollReveal';
+import Counter from '../components/Counter';
 import './Home.css';
 
 const heroLine = {
@@ -74,9 +76,24 @@ export default function Home() {
             </motion.div>
 
             <motion.div className="hero__stats" variants={fadeUp(0.85)} initial="hidden" animate="show">
-              <div><strong>12+</strong><span>Years in practice</span></div>
-              <div><strong>3,400+</strong><span>Patients treated</span></div>
-              <div><strong>4.9/5</strong><span>Patient rating</span></div>
+              <div>
+                <strong>
+                  <Counter end={12} suffix="+" />
+                </strong>
+                <span>Years in practice</span>
+              </div>
+              <div>
+                <strong>
+                  <Counter end={3400} suffix="+" />
+                </strong>
+                <span>Patients treated</span>
+              </div>
+              <div>
+                <strong>
+                  <Counter end={4.9} decimals={1} suffix="/5" />
+                </strong>
+                <span>Patient rating</span>
+              </div>
             </motion.div>
           </div>
 
@@ -91,77 +108,87 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="pillars">
-        <div className="shell">
-          <div className="section-head">
-            <h2>Three principles behind every treatment plan.</h2>
-          </div>
+      <ScrollReveal>
+        <section className="pillars">
+          <div className="shell">
+            <div className="section-head">
+              <h2>Three principles behind every treatment plan.</h2>
+            </div>
 
-          <div className="pillars__grid">
-            {PILLARS.map((p) => (
-              <div className="pillar-card" key={p.title}>
-                <span className="pillar-card__index">{p.title[0]}</span>
-                <h3>{p.title}</h3>
-                <p>{p.text}</p>
-              </div>
-            ))}
+            <div className="pillars__grid">
+              {PILLARS.map((p) => (
+                <div className="pillar-card" key={p.title}>
+                  <span className="pillar-card__index">{p.title[0]}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section className="services-teaser">
-        <div className="shell">
-          <div className="section-head section-head--split">
-            <h2>Care that spans everyday relief to complex reconstruction.</h2>
-            <Link to="/services" className="btn btn-ghost">View all treatments</Link>
+      <ScrollReveal>
+        <section className="services-teaser">
+          <div className="shell">
+            <div className="section-head section-head--split">
+              <h2>Care that spans everyday relief to complex reconstruction.</h2>
+              <Link to="/services" className="btn btn-ghost">View all treatments</Link>
+            </div>
+
+            <div className="services-teaser__grid">
+              {SERVICES.map((s) => (
+                <Link to="/services" className="service-row" key={s.name}>
+                  <h3>{s.name}</h3>
+                  <p>{s.text}</p>
+                  <span className="service-row__arrow">&#8594;</span>
+                </Link>
+              ))}
+            </div>
           </div>
+        </section>
+      </ScrollReveal>
 
-          <div className="services-teaser__grid">
-            {SERVICES.map((s) => (
-              <Link to="/services" className="service-row" key={s.name}>
-                <h3>{s.name}</h3>
-                <p>{s.text}</p>
-                <span className="service-row__arrow">&#8594;</span>
-              </Link>
-            ))}
+      <ScrollReveal>
+        <section className="process">
+          <div className="shell">
+            <div className="section-head">
+              <h2>From first consult to lasting recovery.</h2>
+            </div>
+
+            <div className="process__grid">
+              {PROCESS.map((s) => (
+                <div className="process-card" key={s.step}>
+                  <span className="process-card__step">{s.step}</span>
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section className="process">
-        <div className="shell">
-          <div className="section-head">
-            <h2>From first consult to lasting recovery.</h2>
+      <ScrollReveal>
+        <section className="testimonials">
+          <div className="shell">
+            <h2>Real recoveries, in patients&rsquo; own words.</h2>
+            <TestimonialRotator />
           </div>
+        </section>
+      </ScrollReveal>
 
-          <div className="process__grid">
-            {PROCESS.map((s) => (
-              <div className="process-card" key={s.step}>
-                <span className="process-card__step">{s.step}</span>
-                <h3>{s.title}</h3>
-                <p>{s.text}</p>
-              </div>
-            ))}
+      <ScrollReveal>
+        <section className="cta-banner">
+          <div className="shell cta-banner__inner">
+            <div>
+              <h2>Ready to treat the cause, not just the symptom?</h2>
+              <p>Start with a diagnostic consult with Dr. Khan &mdash; most new patients are seen within the week.</p>
+            </div>
+            <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
           </div>
-        </div>
-      </section>
-
-      <section className="testimonials">
-        <div className="shell">
-          <h2>Real recoveries, in patients&rsquo; own words.</h2>
-          <TestimonialRotator />
-        </div>
-      </section>
-
-      <section className="cta-banner">
-        <div className="shell cta-banner__inner">
-          <div>
-            <h2>Ready to treat the cause, not just the symptom?</h2>
-            <p>Start with a diagnostic consult with Dr. Khan &mdash; most new patients are seen within the week.</p>
-          </div>
-          <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </>
   );
 }

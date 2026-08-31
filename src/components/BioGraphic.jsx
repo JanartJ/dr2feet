@@ -91,7 +91,7 @@ export default function BioGraphic() {
             key={idx}
             custom={1.2 + idx * 0.08} variants={draw} initial="hidden" animate="show"
             x1={x1} y1={y1} x2={x2} y2={y2}
-            stroke="#dbe3ec" strokeOpacity="0.7" strokeWidth="1.6" strokeLinecap="round"
+            stroke="var(--slate)" strokeOpacity="0.8" strokeWidth="1.6" strokeLinecap="round"
           />
         ))}
       </svg>

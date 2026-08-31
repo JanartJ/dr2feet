@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Accordion from '../components/Accordion';
+import ScrollReveal from '../components/ScrollReveal';
 import './Services.css';
 
 const GROUPS = [
@@ -64,46 +65,52 @@ export default function Services() {
       </section>
 
       {GROUPS.map((group, gi) => (
-        <section className="svc-group" key={group.label}>
-          <div className="shell svc-group__grid">
-            <div className="svc-group__intro">
-              <span className="svc-group__index">0{gi + 1}</span>
-              <h2>{group.label}</h2>
-              <p>{group.intro}</p>
-            </div>
+        <ScrollReveal key={group.label}>
+          <section className="svc-group">
+            <div className="shell svc-group__grid">
+              <div className="svc-group__intro">
+                <span className="svc-group__index">0{gi + 1}</span>
+                <h2>{group.label}</h2>
+                <p>{group.intro}</p>
+              </div>
 
-            <div className="svc-group__list">
-              {group.items.map((item) => (
-                <div className="svc-item" key={item.name}>
-                  <h3>{item.name}</h3>
-                  <p>{item.text}</p>
-                </div>
-              ))}
+              <div className="svc-group__list">
+                {group.items.map((item) => (
+                  <div className="svc-item" key={item.name}>
+                    <h3>{item.name}</h3>
+                    <p>{item.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
       ))}
 
-      <section className="svc-faq">
-        <div className="shell svc-faq__grid">
-          <div>
-            <h2>Common questions before your first visit.</h2>
-            <p className="svc-faq__note">Have something else on your mind?</p>
-            <Link to="/contact" className="btn btn-ghost">Ask us directly</Link>
+      <ScrollReveal>
+        <section className="svc-faq">
+          <div className="shell svc-faq__grid">
+            <div>
+              <h2>Common questions before your first visit.</h2>
+              <p className="svc-faq__note">Have something else on your mind?</p>
+              <Link to="/contact" className="btn btn-ghost">Ask us directly</Link>
+            </div>
+            <Accordion items={FAQS} />
           </div>
-          <Accordion items={FAQS} />
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section className="cta-banner">
-        <div className="shell cta-banner__inner">
-          <div>
-            <h2>Start with a diagnostic consult.</h2>
-            <p>Bring your imaging or history if you have it &mdash; Dr. Khan will map next steps at your first visit.</p>
+      <ScrollReveal>
+        <section className="cta-banner">
+          <div className="shell cta-banner__inner">
+            <div>
+              <h2>Start with a diagnostic consult.</h2>
+              <p>Bring your imaging or history if you have it &mdash; Dr. Khan will map next steps at your first visit.</p>
+            </div>
+            <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
           </div>
-          <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </>
   );
 }

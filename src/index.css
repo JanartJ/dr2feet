@@ -1,7 +1,53 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Color tokens */
+  /* Color tokens - White Mode */
+  --void: #ffffff;
+  --panel: #f8fafc;
+  --panel-raised: #f1f5f9;
+  --line: rgba(15, 23, 42, 0.08);
+  --line-bright: rgba(15, 23, 42, 0.14);
+
+  --bio-blue: #1b6cdb; /* Saturated medical blue with proper contrast on white */
+  --bio-blue-soft: rgba(27, 108, 219, 0.08);
+  --bio-teal: #0d9488; /* Darker teal for proper contrast on white background */
+  --bio-teal-soft: rgba(13, 148, 136, 0.08);
+
+  --chrome: #1e293b; /* Slate-800 for primary text readability */
+  --chrome-dim: #334155; /* Slate-700 */
+  --slate: #475569; /* Slate-600 */
+  --slate-dim: #64748b; /* Slate-500 */
+
+  --white: #0f172a; /* Slate-900 for headings and strong tags */
+
+  --map-filter: grayscale(0.25) contrast(0.9);
+
+  /* Button specific color mappings */
+  --btn-primary-bg: linear-gradient(135deg, var(--bio-blue) 0%, #1052ab 100%);
+  --btn-primary-text: #ffffff;
+  --btn-shadow-hover: rgba(27, 108, 219, 0.22);
+
+  /* Nav specific color mappings */
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-gradient: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), transparent);
+  --nav-border: rgba(15, 23, 42, 0.08);
+  --nav-text: #334155;
+  --nav-text-hover: #0f172a;
+  --nav-text-active: #1b6cdb;
+
+  /* Type */
+  --font-display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+
+  /* Layout */
+  --content-max: 1180px;
+  --edge: clamp(24px, 5vw, 72px);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.theme-dark {
+  /* Color tokens - Dark Mode */
   --void: #05070d;
   --panel: #0b1424;
   --panel-raised: #101c30;
@@ -20,15 +66,20 @@
 
   --white: #f4f7fb;
 
-  /* Type */
-  --font-display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
-  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
+  --map-filter: grayscale(0.4) invert(0.92) contrast(0.9);
 
-  /* Layout */
-  --content-max: 1180px;
-  --edge: clamp(24px, 5vw, 72px);
+  /* Button specific color mappings */
+  --btn-primary-bg: linear-gradient(135deg, var(--bio-blue) 0%, #177fe3 100%);
+  --btn-primary-text: #05070d;
+  --btn-shadow-hover: rgba(46, 155, 255, 0.35);
 
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Nav specific color mappings */
+  --nav-bg: rgba(5, 8, 16, 0.78);
+  --nav-gradient: linear-gradient(to bottom, rgba(5, 7, 13, 0.95), transparent);
+  --nav-border: rgba(126, 158, 199, 0.16);
+  --nav-text: #a9b6c8;
+  --nav-text-hover: #f4f7fb;
+  --nav-text-active: #2e9bff;
 }
 
 * {
@@ -57,8 +108,8 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 900px 500px at 85% -5%, rgba(46, 155, 255, 0.10), transparent 60%),
-    radial-gradient(ellipse 700px 500px at -5% 40%, rgba(111, 224, 207, 0.06), transparent 60%);
+    radial-gradient(ellipse 900px 500px at 85% -5%, rgba(27, 108, 219, 0.04), transparent 60%),
+    radial-gradient(ellipse 700px 500px at -5% 40%, rgba(13, 148, 136, 0.03), transparent 60%);
 }
 
 #root {
@@ -134,36 +185,69 @@ textarea:focus-visible {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 14px 26px;
-  border-radius: 3px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
   border: 1px solid transparent;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease), background 0.35s var(--ease);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 .btn-primary {
-  background: var(--bio-blue);
-  color: #041020;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--bio-teal) 0%, var(--bio-blue) 100%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.35s var(--ease);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 0 1px var(--bio-blue), 0 0 34px rgba(46, 155, 255, 0.45);
+  color: var(--btn-primary-text);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--btn-shadow-hover), 0 0 0 1px var(--bio-blue);
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
 }
 
 .btn-ghost {
-  background: transparent;
+  background: rgba(126, 158, 199, 0.05);
   border-color: var(--line-bright);
-  color: var(--chrome);
+  color: var(--chrome-dim);
 }
 
 .btn-ghost:hover {
+  background: rgba(111, 224, 207, 0.08);
   border-color: var(--bio-teal);
   color: var(--white);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(111, 224, 207, 0.15);
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -172,6 +256,11 @@ textarea:focus-visible {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
