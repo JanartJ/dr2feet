@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '../components/ScrollReveal';
+import EnhancedScrollReveal from '../components/EnhancedScrollReveal';
+import { HoverEffect, HoverCard } from '../components/HoverEffects';
+import { LineSeparator, GradientLine } from '../components/LineAnimation';
+import * as animations from '../utils/animations';
 import './About.css';
 
 const CREDENTIALS = [
@@ -57,54 +61,101 @@ export default function About() {
         </div>
       </section>
 
-      <ScrollReveal>
+      <EnhancedScrollReveal type="fadeUp">
         <section className="philosophy">
           <div className="shell philosophy__grid">
-            <blockquote>
+            <motion.blockquote
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.8 }}
+            >
               &ldquo;Most foot pain isn't a mystery &mdash; it's a mechanical or
               cellular problem that hasn't been treated as one. My job is to
               find which, and fix it at that level.&rdquo;
               <footer>Dr. Bilal Khan</footer>
-            </blockquote>
+              <motion.div
+                initial={{ scaleX: 0, transformOrigin: 'left' }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{
+                  height: '3px',
+                  background: 'linear-gradient(90deg, var(--bio-blue), var(--bio-teal))',
+                  marginTop: '16px',
+                  borderRadius: '2px',
+                }}
+              />
+            </motion.blockquote>
 
             <div className="philosophy__values">
-              {VALUES.map((v) => (
-                <div key={v.title} className="philosophy__value">
-                  <h3>{v.title}</h3>
-                  <p>{v.text}</p>
-                </div>
+              {VALUES.map((v, index) => (
+                <HoverEffect key={v.title} effect="lift">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="philosophy__value"
+                  >
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true, margin: '-50px' }}
+                      transition={{ duration: 0.8, delay: 0.1 + index * 0.1 }}
+                      style={{
+                        height: '2px',
+                        background: 'var(--bio-teal)',
+                        marginBottom: '12px',
+                        borderRadius: '1px',
+                      }}
+                    />
+                    <h3>{v.title}</h3>
+                    <p>{v.text}</p>
+                  </motion.div>
+                </HoverEffect>
               ))}
             </div>
           </div>
         </section>
-      </ScrollReveal>
+      </EnhancedScrollReveal>
 
-      <ScrollReveal>
+      <EnhancedScrollReveal type="fadeUp">
         <section className="journey">
           <div className="shell">
-            <h2>A path built around one specialty.</h2>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2>A path built around one specialty.</h2>
+              {/* <GradientLine delay={0.2} /> */}
+            </motion.div>
 
             <div className="journey__track">
-              <div className="journey__item">
-                <span>Podiatric Medical School</span>
-                <p>Trained in surgical and biomechanical foundations of foot &amp; ankle care.</p>
-              </div>
-              <div className="journey__item">
-                <span>Surgical Residency</span>
-                <p>Focused on reconstructive and minimally invasive procedures.</p>
-              </div>
-              <div className="journey__item">
-                <span>Regenerative Fellowship</span>
-                <p>Specialized in PRP, cellular therapy, and sports medicine protocols.</p>
-              </div>
-              <div className="journey__item">
-                <span>Dr. 2 Feet, Founded</span>
-                <p>Built a practice around restoring tissue, not just managing symptoms.</p>
-              </div>
+              {[
+                { span: 'Podiatric Medical School', p: 'Trained in surgical and biomechanical foundations of foot & ankle care.' },
+                { span: 'Surgical Residency', p: 'Focused on reconstructive and minimally invasive procedures.' },
+                { span: 'Regenerative Fellowship', p: 'Specialized in PRP, cellular therapy, and sports medicine protocols.' },
+                { span: 'Dr. 2 Feet, Founded', p: 'Built a practice around restoring tissue, not just managing symptoms.' },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.span}
+                  className="journey__item"
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <span>{item.span}</span>
+                  <p>{item.p}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
-      </ScrollReveal>
+      </EnhancedScrollReveal>
     </>
   );
 }

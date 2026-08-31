@@ -183,3 +183,82 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ==================== ENHANCED ANIMATIONS ==================== */
+
+/* Philosophy Value Cards */
+.philosophy__value {
+  padding: 20px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.3s var(--ease);
+  will-change: transform, background, box-shadow;
+}
+
+.philosophy__value:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(27, 108, 219, 0.1);
+}
+
+.philosophy__value h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  transition: color 0.3s var(--ease);
+}
+
+.philosophy__value:hover h3 {
+  color: var(--bio-blue);
+}
+
+/* Journey Item Animations */
+.journey__item {
+  padding-top: 22px;
+  border-top: 1px solid var(--line-bright);
+  padding: 24px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s var(--ease);
+  will-change: transform, background, border-color;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.journey__item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-top-color: var(--bio-blue);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(27, 108, 219, 0.1);
+}
+
+.journey__item span {
+  font-family: var(--font-display);
+  color: var(--white);
+  font-size: 0.98rem;
+  display: block;
+  margin-bottom: 10px;
+  transition: color 0.3s var(--ease);
+}
+
+.journey__item:hover span {
+  color: var(--bio-blue);
+}
+
+/* About Hero Card Animation */
+.about-hero__card {
+  border: 1px solid var(--line-bright);
+  border-radius: 6px;
+  padding: 36px;
+  background: linear-gradient(160deg, rgba(46, 155, 255, 0.08), transparent 60%);
+  margin-top: 4px;
+  transition: all 0.4s var(--ease);
+  will-change: transform, border-color, box-shadow;
+}
+
+.about-hero__card:hover {
+  border-color: var(--bio-blue);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(27, 108, 219, 0.15);
+  background: linear-gradient(160deg, rgba(46, 155, 255, 0.15), transparent 60%);
+}

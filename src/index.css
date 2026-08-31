@@ -269,3 +269,295 @@ textarea:focus-visible {
     font-size: 15px;
   }
 }
+
+/* ==================== ADVANCED ANIMATION UTILITIES ==================== */
+
+/* Text Animation Utilities */
+.animate-title {
+  overflow: hidden;
+}
+
+.animate-title span {
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Stagger text animation */
+.stagger-text {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em;
+}
+
+.stagger-text span {
+  display: inline-block;
+}
+
+/* Smooth transitions for interactive elements */
+.interactive-element {
+  will-change: transform, box-shadow, background-color;
+  transition: transform 0.3s var(--ease), 
+              box-shadow 0.3s var(--ease),
+              background-color 0.3s var(--ease);
+}
+
+/* Parallax container */
+.parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Scroll-triggered shadow lift */
+.shadow-lift {
+  transition: box-shadow 0.4s var(--ease);
+}
+
+.shadow-lift.lifted {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth number counter animation */
+.number-counter {
+  font-weight: 700;
+  font-size: clamp(28px, 8vw, 56px);
+  line-height: 1;
+}
+
+/* Animated background gradient */
+.animated-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    var(--bio-blue),
+    var(--bio-teal)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--bio-blue), var(--bio-teal));
+  transform-origin: left;
+  z-index: 999;
+}
+
+/* Fade in on scroll intersection */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.fade-in-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scale in on scroll */
+.scale-in-on-scroll {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.scale-in-on-scroll.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Slide in from left on scroll */
+.slide-left-on-scroll {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.slide-left-on-scroll.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide in from right on scroll */
+.slide-right-on-scroll {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.slide-right-on-scroll.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Bounce in on scroll */
+.bounce-in-on-scroll {
+  opacity: 0;
+  transform: scale(0.3);
+  transition: opacity 0.6s var(--ease), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bounce-in-on-scroll.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Rotate in on scroll */
+.rotate-in-on-scroll {
+  opacity: 0;
+  transform: rotate(-10deg) scale(0.9);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.rotate-in-on-scroll.in-view {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Blur fade in */
+.blur-fade-in-on-scroll {
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.6s var(--ease), filter 0.6s var(--ease);
+}
+
+.blur-fade-in-on-scroll.in-view {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* Stagger child animations */
+.stagger-container > * {
+  opacity: 0;
+  animation: staggerFadeIn 0.6s var(--ease) forwards;
+}
+
+.stagger-container > :nth-child(1) { animation-delay: 0s; }
+.stagger-container > :nth-child(2) { animation-delay: 0.1s; }
+.stagger-container > :nth-child(3) { animation-delay: 0.2s; }
+.stagger-container > :nth-child(4) { animation-delay: 0.3s; }
+.stagger-container > :nth-child(5) { animation-delay: 0.4s; }
+.stagger-container > :nth-child(n+6) { animation-delay: 0.5s; }
+
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth link transitions */
+a {
+  transition: color 0.3s var(--ease), text-decoration-color 0.3s var(--ease);
+}
+
+/* Smooth form input focus */
+input, textarea, select {
+  transition: border-color 0.3s var(--ease),
+              box-shadow 0.3s var(--ease),
+              background-color 0.3s var(--ease);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--bio-blue);
+  box-shadow: 0 0 0 3px var(--bio-blue-soft);
+}
+
+/* Smooth modal/overlay animations */
+.modal-overlay {
+  animation: fadeIn 0.3s var(--ease);
+}
+
+.modal-overlay.closing {
+  animation: fadeOut 0.3s var(--ease) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Loading animation */
+.loading-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--line);
+  border-top-color: var(--bio-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--panel),
+    var(--panel-raised),
+    var(--panel)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Smooth scrollbar (for browsers that support it) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--panel);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-bright);
+  border-radius: 6px;
+  transition: background 0.3s var(--ease);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bio-blue);
+}
+
+/* Accessibility: Respect user's animation preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

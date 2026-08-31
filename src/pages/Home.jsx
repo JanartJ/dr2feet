@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import BioGraphic from '../components/BioGraphic';
 import TestimonialRotator from '../components/TestimonialRotator';
 import ScrollReveal from '../components/ScrollReveal';
+import EnhancedScrollReveal from '../components/EnhancedScrollReveal';
 import Counter from '../components/Counter';
+import { HoverEffect, HoverCard, HoverImageZoom } from '../components/HoverEffects';
+import { LineAnimation, LineSeparator, GradientLine } from '../components/LineAnimation';
+import * as animations from '../utils/animations';
 import './Home.css';
 
 const heroLine = {
@@ -14,9 +18,9 @@ const heroLine = {
   }),
 };
 
-const fadeUp = (delay = 0) => ({
+const fadeUp = (delay = 0,duration = 0.7) => ({
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration, delay, ease: [0.22, 1, 0.36, 1] } },
 });
 
 const PILLARS = [
@@ -75,7 +79,7 @@ export default function Home() {
               <Link to="/services" className="btn btn-ghost">Explore Treatments</Link>
             </motion.div>
 
-            <motion.div className="hero__stats" variants={fadeUp(0.85)} initial="hidden" animate="show">
+            <motion.div className="hero__stats" variants={fadeUp(0.85,1.5)} initial="hidden" animate="show">
               <div>
                 <strong>
                   <Counter end={12} suffix="+" />
@@ -108,87 +112,174 @@ export default function Home() {
         </div>
       </section>
 
-      <ScrollReveal>
+      <EnhancedScrollReveal type="fadeUp" stagger staggerDelay={0.15}>
         <section className="pillars">
           <div className="shell">
-            <div className="section-head">
-              <h2>Three principles behind every treatment plan.</h2>
-            </div>
+            <EnhancedScrollReveal type="fadeDown">
+              <div className="section-head">
+                <h2>Three principles behind every treatment plan.</h2>
+                <LineSeparator delay={0.3} />
+              </div>
+            </EnhancedScrollReveal>
+            
 
             <div className="pillars__grid">
-              {PILLARS.map((p) => (
-                <div className="pillar-card" key={p.title}>
-                  <span className="pillar-card__index">{p.title[0]}</span>
-                  <h3>{p.title}</h3>
-                  <p>{p.text}</p>
-                </div>
+              {PILLARS.map((p, index) => (
+                <HoverEffect key={p.title} effect="lift" className="pillar-card">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="pillar-card-inner"
+                  >
+                    <span className="pillar-card__index">{p.title[0]}</span>
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true, margin: '-50px' }}
+                      transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+                      style={{ height: '2px', background: 'var(--bio-blue)', borderRadius: '1px', marginBottom: '12px' }}
+                    />
+                    <h3>{p.title}</h3>
+                    <p>{p.text}</p>
+                  </motion.div>
+                </HoverEffect>
               ))}
             </div>
           </div>
         </section>
-      </ScrollReveal>
+      </EnhancedScrollReveal>
 
-      <ScrollReveal>
+      <EnhancedScrollReveal type="fadeUp">
         <section className="services-teaser">
           <div className="shell">
-            <div className="section-head section-head--split">
-              <h2>Care that spans everyday relief to complex reconstruction.</h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+              className="section-head section-head--split"
+            >
+              <div>
+                <h2>Care that spans everyday relief to complex reconstruction.</h2>
+                <GradientLine delay={0.2} />
+              </div>
               <Link to="/services" className="btn btn-ghost">View all treatments</Link>
-            </div>
+            </motion.div>
 
             <div className="services-teaser__grid">
-              {SERVICES.map((s) => (
-                <Link to="/services" className="service-row" key={s.name}>
-                  <h3>{s.name}</h3>
-                  <p>{s.text}</p>
-                  <span className="service-row__arrow">&#8594;</span>
-                </Link>
+              {SERVICES.map((s, index) => (
+                <motion.div
+                  key={s.name}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Link to="/services" className="service-row hover-color-transition">
+                    <motion.div
+                      initial={{ scaleX: 0, transformOrigin: 'left' }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true, margin: '-50px' }}
+                      transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+                      style={{
+                        height: '2px',
+                        background: 'var(--bio-blue)',
+                        marginBottom: '12px',
+                        borderRadius: '1px',
+                      }}
+                    />
+                    <h3>{s.name}</h3>
+                    <p>{s.text}</p>
+                    <span className="service-row__arrow">&#8594;</span>
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
-      </ScrollReveal>
+      </EnhancedScrollReveal>
 
-      <ScrollReveal>
+      <EnhancedScrollReveal type="fadeUp">
         <section className="process">
           <div className="shell">
-            <div className="section-head">
-              <h2>From first consult to lasting recovery.</h2>
-            </div>
+            <EnhancedScrollReveal type="fadeDown">
+              <div className="section-head">
+                <h2>From first consult to lasting recovery.</h2>
+                <LineSeparator delay={0.3} />
+              </div>
+            </EnhancedScrollReveal>
 
             <div className="process__grid">
-              {PROCESS.map((s) => (
-                <div className="process-card" key={s.step}>
-                  <span className="process-card__step">{s.step}</span>
-                  <h3>{s.title}</h3>
-                  <p>{s.text}</p>
-                </div>
+              {PROCESS.map((s, index) => (
+                <HoverEffect key={s.step} effect="lift">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                    className="process-card"
+                  >
+                    <motion.span
+                      className="process-card__step"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true, margin: '-50px' }}
+                      transition={{ duration: 0.5, delay: index * 0.12, ease: [0.34, 1.56, 0.64, 1] }}
+                    >
+                      {s.step}
+                    </motion.span>
+                    <h3>{s.title}</h3>
+                    <p>{s.text}</p>
+                  </motion.div>
+                </HoverEffect>
               ))}
             </div>
           </div>
         </section>
-      </ScrollReveal>
+      </EnhancedScrollReveal>
 
-      <ScrollReveal>
+      <EnhancedScrollReveal type="scaleIn">
         <section className="testimonials">
           <div className="shell">
-            <h2>Real recoveries, in patients&rsquo; own words.</h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2>Real recoveries, in patients&rsquo; own words.</h2>
+              <LineSeparator delay={0.3} margin="16px 0 24px 0" />
+            </motion.div>
             <TestimonialRotator />
           </div>
         </section>
-      </ScrollReveal>
+      </EnhancedScrollReveal>
 
-      <ScrollReveal>
+      <EnhancedScrollReveal type="fadeUp">
         <section className="cta-banner">
           <div className="shell cta-banner__inner">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
               <h2>Ready to treat the cause, not just the symptom?</h2>
               <p>Start with a diagnostic consult with Dr. Khan &mdash; most new patients are seen within the week.</p>
-            </div>
-            <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
+            </motion.div>
           </div>
         </section>
-      </ScrollReveal>
+      </EnhancedScrollReveal>
     </>
   );
 }

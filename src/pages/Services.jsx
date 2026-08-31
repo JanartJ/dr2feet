@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Accordion from '../components/Accordion';
 import ScrollReveal from '../components/ScrollReveal';
+import EnhancedScrollReveal from '../components/EnhancedScrollReveal';
+import { HoverEffect } from '../components/HoverEffects';
+import { LineSeparator, GradientLine } from '../components/LineAnimation';
+import * as animations from '../utils/animations';
 import './Services.css';
 
 const GROUPS = [
@@ -65,52 +69,105 @@ export default function Services() {
       </section>
 
       {GROUPS.map((group, gi) => (
-        <ScrollReveal key={group.label}>
+        <EnhancedScrollReveal key={group.label} type="fadeUp">
           <section className="svc-group">
             <div className="shell svc-group__grid">
-              <div className="svc-group__intro">
-                <span className="svc-group__index">0{gi + 1}</span>
+              <motion.div
+                className="svc-group__intro"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6 }}
+              >
+                <motion.span
+                  className="svc-group__index"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
+                >
+                  0{gi + 1}
+                </motion.span>
                 <h2>{group.label}</h2>
                 <p>{group.intro}</p>
-              </div>
+                <GradientLine delay={0.3} />
+              </motion.div>
 
               <div className="svc-group__list">
-                {group.items.map((item) => (
-                  <div className="svc-item" key={item.name}>
-                    <h3>{item.name}</h3>
-                    <p>{item.text}</p>
-                  </div>
+                {group.items.map((item, index) => (
+                  <HoverEffect key={item.name} effect="lift">
+                    <motion.div
+                      className="svc-item"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-50px' }}
+                      transition={{ duration: 0.6, delay: index * 0.08 }}
+                    >
+                      <motion.div
+                        initial={{ scaleX: 0, transformOrigin: 'left' }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true, margin: '-50px' }}
+                        transition={{ duration: 0.8, delay: 0.2 + index * 0.08 }}
+                        style={{
+                          height: '2px',
+                          background: 'var(--bio-blue)',
+                          marginBottom: '12px',
+                          borderRadius: '1px',
+                        }}
+                      />
+                      <h3>{item.name}</h3>
+                      <p>{item.text}</p>
+                    </motion.div>
+                  </HoverEffect>
                 ))}
               </div>
             </div>
           </section>
-        </ScrollReveal>
+        </EnhancedScrollReveal>
       ))}
 
-      <ScrollReveal>
-        <section className="svc-faq">
+      <EnhancedScrollReveal type="fadeUp">
+        <motion.section layout className="svc-faq">
           <div className="shell svc-faq__grid">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
               <h2>Common questions before your first visit.</h2>
+              <GradientLine delay={0.2} />
               <p className="svc-faq__note">Have something else on your mind?</p>
               <Link to="/contact" className="btn btn-ghost">Ask us directly</Link>
-            </div>
+            </motion.div>
             <Accordion items={FAQS} />
           </div>
-        </section>
-      </ScrollReveal>
+        </motion.section>
+      </EnhancedScrollReveal>
 
-      <ScrollReveal>
-        <section className="cta-banner">
+      <EnhancedScrollReveal type="fadeUp">
+        <motion.section layout className="cta-banner">
           <div className="shell cta-banner__inner">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
               <h2>Start with a diagnostic consult.</h2>
-              <p>Bring your imaging or history if you have it &mdash; Dr. Khan will map next steps at your first visit.</p>
-            </div>
-            <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
+              <p>Bring your imaging or history if you have it — Dr. Khan will map next steps at your first visit.</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Link to="/contact" className="btn btn-primary">Book a Consult</Link>
+            </motion.div>
           </div>
-        </section>
-      </ScrollReveal>
+        </motion.section>
+      </EnhancedScrollReveal>
     </>
   );
 }

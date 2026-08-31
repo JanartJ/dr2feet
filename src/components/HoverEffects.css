@@ -1,0 +1,351 @@
+/* Hover Effects Styles */
+
+/* General Hover Effect */
+.hover-effect {
+  position: relative;
+}
+
+/* Hover Effects by Type */
+.hover-effect--lift {
+  will-change: transform;
+}
+
+.hover-effect--scale {
+  transform-origin: center;
+}
+
+.hover-effect--glow {
+  will-change: box-shadow;
+}
+
+.hover-effect--tilt {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.hover-effect--brightness {
+  will-change: filter;
+}
+
+/* Hover Card */
+.hover-card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  will-change: transform, box-shadow;
+  transition: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-card:hover {
+  border-color: var(--bio-blue);
+  background: var(--panel-raised);
+  box-shadow: 0 12px 32px rgba(27, 108, 219, 0.12);
+}
+
+/* Animated Button */
+.animated-button {
+  padding: 12px 32px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow;
+}
+
+.animated-button--primary {
+  background: linear-gradient(135deg, var(--bio-blue) 0%, #1052ab 100%);
+  color: white;
+}
+
+.animated-button--primary:hover {
+  box-shadow: 0 8px 24px rgba(27, 108, 219, 0.3);
+}
+
+.animated-button--ghost {
+  background: transparent;
+  color: var(--chrome);
+  border: 1px solid var(--line-bright);
+}
+
+.animated-button--ghost:hover {
+  background: var(--panel);
+  border-color: var(--bio-blue);
+  color: var(--bio-blue);
+}
+
+/* Image Zoom */
+.hover-image-zoom {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  will-change: transform;
+}
+
+.hover-image-zoom img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Underline Link */
+.hover-underline-link {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  cursor: pointer;
+}
+
+.hover-underline-link .underline {
+  margin-top: 4px;
+}
+
+/* Rotate Icon */
+.hover-rotate-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* Highlight */
+.hover-highlight {
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Border Animation */
+.hover-border-animation {
+  position: relative;
+  border-radius: 8px;
+  will-change: border-color;
+  transition: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* List item hover with left border accent */
+.hover-list-item {
+  padding-left: 16px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              padding-left 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-list-item:hover {
+  border-left-color: var(--bio-blue);
+  padding-left: 24px;
+  color: var(--bio-blue);
+}
+
+/* Icon with background glow */
+.hover-icon-glow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bio-blue-soft);
+  will-change: box-shadow, background;
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-icon-glow:hover {
+  background: var(--bio-blue);
+  box-shadow: 0 8px 24px rgba(27, 108, 219, 0.3);
+}
+
+.hover-icon-glow svg {
+  color: var(--bio-blue);
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 24px;
+  height: 24px;
+}
+
+.hover-icon-glow:hover svg {
+  color: white;
+}
+
+/* Text shimmer on hover */
+.hover-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--chrome) 0%,
+    var(--bio-blue) 50%,
+    var(--chrome) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-shimmer:hover {
+  background-position: 200% center;
+}
+
+/* Smooth color transition on hover */
+.hover-color-transition {
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-color-transition:hover {
+  color: var(--bio-blue);
+}
+
+/* Ring animation on hover */
+.hover-ring {
+  position: relative;
+}
+
+.hover-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--bio-blue);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-ring:hover::before {
+  opacity: 1;
+}
+
+/* Gradient text on hover */
+.hover-gradient-text {
+  transition: background 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-gradient-text:hover {
+  background: linear-gradient(135deg, var(--bio-blue), var(--bio-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pulsing glow on hover */
+.hover-pulse-glow {
+  position: relative;
+}
+
+.hover-pulse-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--bio-blue) 0%, transparent 70%);
+  opacity: 0;
+  animation: none;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.hover-pulse-glow:hover::after {
+  opacity: 0.15;
+  animation: pulseGlow 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.05;
+  }
+}
+
+/* Sliding background on hover */
+.hover-sliding-bg {
+  position: relative;
+  overflow: hidden;
+  background: var(--panel);
+  transition: color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-sliding-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bio-blue-soft);
+  transform: translateX(-101%);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+}
+
+.hover-sliding-bg:hover {
+  color: var(--bio-blue);
+}
+
+.hover-sliding-bg:hover::before {
+  transform: translateX(0);
+}
+
+/* Dot trail on hover */
+.hover-dot-trail {
+  position: relative;
+  will-change: transform;
+}
+
+.hover-dot-trail::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -8px;
+  left: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--bio-blue),
+    var(--bio-blue) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-dot-trail:hover::before {
+  opacity: 1;
+}
+
+/* Split color on hover */
+.hover-split-color {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.hover-split-color span {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-split-color:hover span {
+  transform: translateY(-100%);
+}
+
+.hover-split-color::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--bio-blue);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-split-color:hover::after {
+  transform: translateY(0);
+}

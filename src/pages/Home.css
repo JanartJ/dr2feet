@@ -146,6 +146,7 @@
 .services-teaser__grid {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .service-row {
@@ -299,9 +300,223 @@
   }
 }
 
+/* ==================== ENHANCED ANIMATIONS ==================== */
+
+/* Pillar Card Animations */
+.pillar-card {
+  background: var(--void);
+  padding: 40px 34px;
+  transition: background 0.4s var(--ease);
+  will-change: transform, box-shadow;
+  border-radius: 2px;
+}
+
+.pillar-card:hover {
+  background: var(--panel);
+  box-shadow: 0 8px 24px rgba(27, 108, 219, 0.08);
+}
+
+.pillar-card-inner {
+  position: relative;
+}
+
+.pillar-card__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--line-bright);
+  font-family: var(--font-display);
+  color: var(--bio-teal);
+  margin-bottom: 24px;
+  transition: all 0.3s var(--ease);
+  will-change: transform, border-color;
+}
+
+.pillar-card:hover .pillar-card__index {
+  border-color: var(--bio-blue);
+  color: var(--bio-blue);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(27, 108, 219, 0.2);
+}
+
+.pillar-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  transition: color 0.3s var(--ease);
+}
+
+.pillar-card:hover h3 {
+  color: var(--bio-blue);
+}
+
+/* Service Row Animations */
+.service-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  align-items: center;
+  gap: 32px;
+  padding: 30px 8px;
+  border-top: 1px solid var(--line);
+  transition: all 0.35s var(--ease);
+  will-change: transform, padding, border-color;
+  position: relative;
+}
+
+.service-row::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: -100%;
+  width: 0;
+  height: 2px;
+  background: var(--bio-blue);
+  transition: width 0.35s var(--ease);
+}
+
+.service-row:hover {
+  padding-left: 20px;
+  border-color: var(--line-bright);
+  transform: translateX(0);
+}
+
+.service-row:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+.service-row h3 {
+  font-size: 1.15rem;
+  color: var(--white);
+  transition: all 0.35s var(--ease);
+}
+
+.service-row:hover h3 {
+  color: var(--bio-blue);
+}
+
+.service-row__arrow {
+  font-size: 1.2rem;
+  color: var(--slate-dim);
+  transition: all 0.35s var(--ease);
+}
+
+.service-row:hover .service-row__arrow {
+  color: var(--bio-blue);
+  transform: translateX(4px);
+}
+
+/* Process Card Animations */
+.process-card {
+  position: relative;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-bright);
+  padding: 24px;
+  border-radius: 6px;
+  transition: all 0.3s var(--ease);
+  will-change: transform, background, box-shadow;
+}
+
+.process-card:hover {
+  background: var(--void);
+  box-shadow: 0 8px 24px rgba(27, 108, 219, 0.12);
+  border-top-color: var(--bio-blue);
+  transform: translateY(-4px);
+}
+
+.process-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--bio-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+}
+
+.process-card:hover::before {
+  transform: scaleX(1);
+}
+
+.process-card__step {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--bio-blue);
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+  transition: all 0.3s var(--ease);
+}
+
+.process-card:hover .process-card__step {
+  color: var(--bio-teal);
+  letter-spacing: 0.05em;
+}
+
+.process-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  transition: color 0.3s var(--ease);
+}
+
+.process-card:hover h3 {
+  color: var(--bio-blue);
+}
+
+/* Enhanced CTA Banner */
+.cta-banner__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  padding: 56px;
+  border: 1px solid var(--line-bright);
+  border-radius: 6px;
+  background: radial-gradient(ellipse 600px 260px at 15% 20%, rgba(46, 155, 255, 0.14), transparent 70%);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease);
+  will-change: border-color, box-shadow;
+}
+
+.cta-banner__inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 0%, rgba(13, 148, 136, 0.1), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.cta-banner__inner:hover {
+  border-color: var(--bio-blue);
+  box-shadow: 0 16px 48px rgba(27, 108, 219, 0.15);
+}
+
+.cta-banner__inner:hover::before {
+  opacity: 1;
+}
+
+.cta-banner h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  max-width: 440px;
+  transition: color 0.3s var(--ease);
+}
+
+.cta-banner__inner:hover h2 {
+  color: var(--bio-blue);
+}
+
 @media (max-width: 600px) {
   .hero__stats {
     gap: 24px;
     flex-wrap: wrap;
   }
 }
+
+
+/* my css */

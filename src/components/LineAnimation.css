@@ -1,0 +1,250 @@
+/* Line Animation Styles */
+
+.line-animation {
+  display: block;
+}
+
+/* Horizontal Lines */
+.line-animation--horizontal {
+  width: 100%;
+  height: 2px;
+  background-color: var(--bio-blue);
+}
+
+/* Vertical Lines */
+.line-animation--vertical {
+  width: 2px;
+  height: 100%;
+  background-color: var(--bio-blue);
+}
+
+/* Diagonal Lines */
+.line-animation--diagonal {
+  width: 100%;
+  height: 2px;
+  transform: skewY(-2deg);
+}
+
+/* Direction Variants */
+.line-animation--left {
+  transform-origin: left;
+}
+
+.line-animation--right {
+  transform-origin: right;
+}
+
+.line-animation--center {
+  transform-origin: center;
+}
+
+.line-animation--top {
+  transform-origin: top;
+}
+
+.line-animation--bottom {
+  transform-origin: bottom;
+}
+
+/* Animated Underline */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--bio-blue);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* Line Separator */
+.line-separator {
+  width: 100%;
+  height: 1px;
+  background-color: var(--line-bright);
+  margin: 24px 0;
+}
+
+/* Animated Border */
+.animated-border {
+  position: relative;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--bio-blue), transparent);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.animated-border:hover::before {
+  opacity: 1;
+}
+
+/* Gradient Line */
+.gradient-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--bio-blue), var(--bio-teal));
+}
+
+/* Accent Line for Text */
+.accent-line {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.accent-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--bio-blue), var(--bio-teal));
+  border-radius: 1px;
+}
+
+/* Animated Box with Border */
+.animated-box {
+  position: relative;
+  border: 1px solid var(--line);
+  transition: border-color 0.3s cubic-bezier(0.22, 1, 0.36, 1), 
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animated-box::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, var(--bio-blue), var(--bio-teal));
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.animated-box:hover {
+  border-color: var(--bio-blue);
+  box-shadow: 0 4px 12px rgba(27, 108, 219, 0.15);
+}
+
+.animated-box:hover::before {
+  opacity: 0.1;
+}
+
+/* Pulse line */
+.pulse-line {
+  animation: pulseLine 2s ease-in-out infinite;
+}
+
+@keyframes pulseLine {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Animated dash line */
+.dash-line {
+  background: linear-gradient(90deg, var(--bio-blue) 50%, transparent 50%);
+  background-size: 20px 100%;
+  background-position: 0 0;
+  animation: dashMove 0.5s linear infinite;
+}
+
+@keyframes dashMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 20px 0;
+  }
+}
+
+/* Wavy line animation */
+.wave-line {
+  position: relative;
+  height: 4px;
+  background: var(--bio-blue);
+  border-radius: 2px;
+}
+
+.wave-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.7);
+  }
+}
+
+/* Multi-line reveal */
+.multi-line-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.multi-line {
+  height: 2px;
+  background: var(--bio-blue);
+  width: 100%;
+  border-radius: 1px;
+}
+
+/* Animated line with dots */
+.line-with-dots {
+  position: relative;
+  height: 2px;
+  background: var(--bio-blue);
+  width: 100%;
+}
+
+.line-with-dots::before,
+.line-with-dots::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--bio-blue);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.line-with-dots::before {
+  left: -3px;
+}
+
+.line-with-dots::after {
+  right: -3px;
+}
